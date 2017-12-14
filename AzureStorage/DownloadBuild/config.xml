@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.scm.NullSCM"/>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <com.microsoftopentechnologies.windowsazurestorage.AzureStorageBuilder plugin="windows-azure-storage@0.3.7-SNAPSHOT">
+      <downloadType>project</downloadType>
+      <deleteFromAzureAfterDownload>false</deleteFromAzureAfterDownload>
+      <storageCredentialId>ce0323ae-6dec-4d04-8ac7-48041f06a61c</storageCredentialId>
+      <containerName></containerName>
+      <fileShare>storage-share</fileShare>
+      <includeFilesPattern>**/*.hpi</includeFilesPattern>
+      <excludeFilesPattern></excludeFilesPattern>
+      <downloadDirLoc></downloadDirLoc>
+      <flattenDirectories>false</flattenDirectories>
+      <includeArchiveZips>false</includeArchiveZips>
+      <buildSelector class="hudson.plugins.copyartifact.StatusBuildSelector" plugin="copyartifact@1.38">
+        <stable>true</stable>
+      </buildSelector>
+      <projectName>testjob01</projectName>
+    </com.microsoftopentechnologies.windowsazurestorage.AzureStorageBuilder>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>
