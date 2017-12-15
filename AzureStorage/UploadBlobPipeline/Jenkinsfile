@@ -1,17 +1,21 @@
 pipeline {
     agent any
     parameters {
-        string(name: "PERSON", defaultValue: "Mr Jenkins", description: "Who should I say hello to?")
+        string(name: "StorageCredentialId", defaultValue: "jwstlocala", description: "Azure storage account credential Id")
     }
     stages {
         stage("scm"){
             steps{
-                git([url: 'https://github.com/juniwang/JavaHelloWorld.git', branch: 'master'])
+                git([url: 'https://github.com/jenkinsci/azure-credentials-plugin.git', branch: 'master'])
             }
         }
         stage("build"){
             steps{
-                sh "mvn clean package"
+                sh "mvn clean package -Dmaven.test.skip=true"
+            }
+            post{
+                azureUpload storageCredentialId: '${params.StorageCredentialId}', storageType: 'blobstorage', 
+                    containerName: 'jenkinstestcontainer', filesPath: '*.hpi'
             }
         }
     }
