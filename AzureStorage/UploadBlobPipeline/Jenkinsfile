@@ -19,7 +19,7 @@ pipeline {
         success {
             echo "storage credential id: ${params.StorageCredentialId}"
             azureUpload storageCredentialId: '${params.StorageCredentialId}', storageType: 'blobstorage', 
-                    containerName: 'jenkinstestcontainer', filesPath: '*.hpi'
+                    containerName: 'jenkinstestcontainer', filesPath: '**/azure*.hpi'
         }
     }
 }
