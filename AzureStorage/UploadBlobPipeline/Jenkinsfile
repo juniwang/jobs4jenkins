@@ -6,13 +6,18 @@ pipeline {
     stages {
         stage("scm"){
             steps{
-                echo "Hello ${params.PERSON}"
+                git([url: 'https://github.com/juniwang/JavaHelloWorld.git', branch: 'master'])
+            }
+        }
+        stage("build"){
+            steps{
+                sh "mvn clean package"
             }
         }
     }
     post {
         success {
-            echo "It's all set."
+            echo "Build succeeds. It's all set."
         }
     }
 }
