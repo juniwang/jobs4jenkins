@@ -13,15 +13,12 @@ pipeline {
             steps{
                 sh "mvn clean package -Dmaven.test.skip=true"
             }
-            post{
-                azureUpload storageCredentialId: '${params.StorageCredentialId}', storageType: 'blobstorage', 
-                    containerName: 'jenkinstestcontainer', filesPath: '*.hpi'
-            }
         }
     }
     post {
         success {
-            echo "Build succeeds. It's all set."
+            azureUpload storageCredentialId: '${params.StorageCredentialId}', storageType: 'blobstorage', 
+                    containerName: 'jenkinstestcontainer', filesPath: '*.hpi'
         }
     }
 }
